@@ -74,3 +74,23 @@ UDAF:
 - [ ] create functionality to store to elastic as keyword
 - [ ] create the functionality to store to qdrant as vectors
   - **this will require chunking a company file into multiple files**
+
+
+
+
+
+# TODO:
+  - [ ] Work
+    - [ ] Implement `Ingestor` for `qdrant`
+    - [ ] Make sure airflow works up to store-data
+    - [ ] Run the DAG with full data, and then run the translator (before running translato remove indices/collections)
+    - [ ] package into a wheel to be used in the lagoon project -- remember that everything that now comes out of a `.env` file
+          or a `config.py` file will now have to becomne parameters of a function to be passed in the airflow process (from xcom
+          info for example)
+  - [ ] Liu
+    - [ ] Wrap up PR for button
+    - [ ]
+  - [ ] Personal
+
+
+  - [ ] https://www.youtube.com/watch?v=2KLC2yxxR1g&ab_channel=NaturalLanguageProcessingpresentations

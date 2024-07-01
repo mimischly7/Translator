@@ -17,7 +17,7 @@ load_dotenv()
 
 class ElasticIngestor(Ingestor):
     def __init__(self, host, port):
-        name = "qdrant_ingestor"
+        name = "elasticsearch"
         super(ElasticIngestor, self).__init__(name=name, host=host, port=port)
     
     def connect(self):

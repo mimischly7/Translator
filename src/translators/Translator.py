@@ -5,16 +5,18 @@ from typing import List
 from src.Document import Document
 from src.ingestors.Ingestor import Ingestor
 from src.config import *
+from src.documators import Documator
 
 class Translator:
-    def __init__(self, ingestor: Ingestor):
+    def __init__(self, ingestor: Ingestor, documator: Documator):
         self.ingestor = ingestor
+        self.documator = documator
 
-    def transform(spark_session: SparkSession) -> DataFrame:
-        raise NotImplementedError
+    def transform(self, spark_session: SparkSession) -> DataFrame:
+        return self.documator.reduce(spark_session)
 
-    def documentify(row: Row) -> Document:
-        raise NotImplementedError
+    def documentify(self, row: Row) -> Document:
+        return self.documator.documentify(row)
     
     def ingest(self, docs: List[Document]):
         self.ingestor.connect()
