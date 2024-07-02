@@ -4,17 +4,18 @@ from pyspark.sql.types import StructType, StringType, ArrayType, Row
 from jinja2 import Template
 
 from src.Document import Document
-from src.config import *
 from src.utils import recursive_dictify
 from src.templates.ncentral_template import jinja_template
 from src.documators.Documator import Documator
 
 class NCCustVectDocumator(Documator):
-    def __init__(self, name: str):
-        self.name = name
-        super(NCCustVectDocumator, self).__init__(name)
+    def __init__(self):
+        super(NCCustVectDocumator, self).__init__(self.__class__.__name__)
     
     def reduce(self, spark_session: SparkSession) -> DataFrame:
+        catalog_name = "rest_catalog"
+        namespace = "ncentral"
+
         spark_session.sql(f"USE {catalog_name}")  # mandatory
 
         # ---------------------------------- Computations ----------------------------------

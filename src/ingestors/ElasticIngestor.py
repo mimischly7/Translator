@@ -1,18 +1,9 @@
 from elasticsearch import Elasticsearch
 from pprint import pprint
 from typing import List
-from dotenv import load_dotenv
-import os
-
-import sys
-# pprint(sys.path)
-sys.path.insert(0, "/Users/mimischly/Desktop/bluebird/jun03/Translation")
 
 from src.ingestors.Ingestor import Ingestor
 from src.Document import Document
-
-load_dotenv()
-
 
 
 class ElasticIngestor(Ingestor):
@@ -51,30 +42,6 @@ class ElasticIngestor(Ingestor):
             self.es.indices.delete(index=index_name, ignore_unavailable=True)
             self.es.indices.create(index=index_name)
 
-            # mappings={
-            #     'properties': {
-            #         "summary": {
-            #             "type": "text",
-            #             "fields": {
-            #                 "keyword": {
-            #                 "type": "keyword",
-            #                 "ignore_above": 256
-            #                 }
-            #             }
-            #         },
-            #         "content": {
-            #             "type": "text",
-            #             "fields": {
-            #                 "keyword": {
-            #                 "type": "keyword",
-            #                 "ignore_above": 256
-            #                 }
-            #             }
-            #         },
-            #     }
-            # }
-
-
     def other(self):
         print(self.es.indices.get(index="customers"))
         print(self.es.indices)
@@ -97,15 +64,4 @@ class ElasticIngestor(Ingestor):
         print(results)
         print("???")
         return results['hits']['hits']
-
-
-            
-        
-
-# ei = ElasticIngestor(os.environ['ELASTIC_HOST'], os.environ['ELASTIC_PORT'])
-# ei.connect()
-
-# pprint(sys.path)
-
-# # ei._create_index("customers")
-# print(ei.other())
+    

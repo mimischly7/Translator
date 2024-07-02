@@ -1,9 +1,7 @@
 import sys
-sys.path += ["/Users/mimischly/Desktop/bluebird/jun03/Translation"]
 
 from typing import List
 from src.Document import Document
-
 
 class Ingestor:
     def __init__(self, name, host, port):
@@ -26,15 +24,3 @@ class Ingestor:
     def httpify(self):
         return f'http://{self.host}:{self.port}'
     
-
-class QDrantIngestor(Ingestor):
-    def __init__(self, host, port):
-        name="qdrant_ingestor"
-        super(QDrantIngestor, self).__init__(name=name, host=host, port=port)
-
-    # def connect/
-
-
-    
-
-

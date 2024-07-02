@@ -1,7 +1,7 @@
 import sys
 sys.path.insert(0, "/Users/mimischly/Desktop/bluebird/jun03/Translation/")
 
-from src.translators.NCCustTranslator import NCCustTranslator, Translator
+from src.Translator import Translator
 from src.ingestors.QDrantIngestor import QDrantIngestor
 from src.ingestors.ElasticIngestor import ElasticIngestor
 from dotenv import load_dotenv
@@ -118,8 +118,8 @@ def qd():
 
 def new_try_qdrant():
   embedder = TrivialEmbedder()
-  ingestor = QDrantIngestor(os.environ['ELASTIC_HOST'], os.environ['ELASTIC_PORT'], embedder)
-  documator = NCCustVectDocumator("xxx")
+  ingestor = QDrantIngestor(os.environ['QDRANT_HOST'], os.environ['QDRANT_PORT'], embedder)
+  documator = NCCustVectDocumator()
 
   print("ingestor and documator created!")
 
@@ -139,7 +139,7 @@ def new_try_qdrant():
 
 def new_try_elastic():
   ingestor = ElasticIngestor(os.environ['ELASTIC_HOST'], os.environ['ELASTIC_PORT'])
-  documator = NCCustVectDocumator("xxx")
+  documator = NCCustVectDocumator()
 
   trans = Translator(ingestor, documator)
 
@@ -154,4 +154,5 @@ def new_try_elastic():
 
 if __name__ == "__main__":
   # qd()
-  new_try_elastic()
+  # new_try_elastic()
+  new_try_qdrant()

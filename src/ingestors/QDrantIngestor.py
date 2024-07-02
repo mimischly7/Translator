@@ -1,23 +1,9 @@
 from typing import List
-from dotenv import load_dotenv
-import os
-
-from qdrant_client import QdrantClient
-
-import sys
-sys.path.insert(0, "/Users/mimischly/Desktop/bluebird/jun03/Translation")
+from qdrant_client import models, QdrantClient
 
 from src.ingestors.Ingestor import Ingestor
 from src.Document import Document
 from src.ingestors.embeddors.Embedder import Embedder
-
-load_dotenv()
-
-from qdrant_client import models, QdrantClient
-# from sentence_transformers import SentenceTransformer
-# encoder = SentenceTransformer("all-MiniLM-L6-v2")
-
-
 
 class QDrantIngestor(Ingestor):
     def __init__(self, host, port, embedder: Embedder):
@@ -27,7 +13,7 @@ class QDrantIngestor(Ingestor):
     
     def connect(self):
         if not hasattr(self, "client"):
-            self.client = QdrantClient("http://localhost:6333")
+            self.client = QdrantClient(self.httpify()) # )"http://localhost:6333"
 
     def disconnect(self):
         if hasattr(self, "client"):

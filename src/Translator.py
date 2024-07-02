@@ -4,21 +4,43 @@ from typing import List
 
 from src.Document import Document
 from src.ingestors.Ingestor import Ingestor
-from src.config import *
 from src.documators import Documator
 
 class Translator:
+    """
+    Orchestration class that receives a :class:`Documentator` and an :class:`Ingestor` to take us from Iceberg tables
+    to succesfull storage in our store of choice. The `run` method performs this orchestration.
+
+    Steps:
+        1. Transform: 
+            Transform the related spark dataframes to produce a `content` column, where each cell contains the tree 
+            representation (using nested spark StructType's and ArrayType's) of the document that is to be stored to the vector/keyword
+            engine.
+            (`_transform` method)
+        2. Document: 
+            Given the transformed Spark DataFrame, which contractually has a `content` column, produce a :class:`Document` for each
+            value of that column (a :class:`Document` is a thin wrapper for the document content, some metadata, and the collection/index
+            it belongs to). 
+            (`_documentify` method)
+        3. Ingest:
+            Given documents produces in step (2), store these documents in the desired endstore. This is where the `ingestor` attribute
+            comes in.
+            (`_ingest` method)
+    
+    Although this is the logical order of the steps, steps (2) and (3) will operate on batches (partitions) of the relevant data,
+    so in a way they will happen in parallel (although for each batch they will run in the specified order)
+    """
     def __init__(self, ingestor: Ingestor, documator: Documator):
         self.ingestor = ingestor
         self.documator = documator
 
-    def transform(self, spark_session: SparkSession) -> DataFrame:
+    def _transform(self, spark_session: SparkSession) -> DataFrame:
         return self.documator.reduce(spark_session)
 
-    def documentify(self, row: Row) -> Document:
+    def _documentify(self, row: Row) -> Document:
         return self.documator.documentify(row)
     
-    def ingest(self, docs: List[Document]):
+    def _ingest(self, docs: List[Document]):
         self.ingestor.connect()
         self.ingestor.storeDocumentBatch(docs)
         self.ingestor.disconnect()
@@ -61,8 +83,8 @@ class Translator:
 
         # Better Solution
         def _process_batch(itr):
-            docs = [self.documentify(row) for row in itr]
-            self.ingest(docs)
+            docs = [self._documentify(row) for row in itr]
+            self._ingest(docs)
 
-        transformed_df = self.transform(spark_session)
+        transformed_df = self._transform(spark_session)
         transformed_df.foreachPartition(_process_batch)
