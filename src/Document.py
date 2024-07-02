@@ -17,7 +17,7 @@ class Document:
         return {**self.payload, "content": self.content}
     
     def __repr__(self):
-        return {**self.unify(), "collection" : self.collection}
+        return str({**self.unify(), "collection" : self.collection})
 
     def __str__(self):
         return str(self.__repr__().keys())

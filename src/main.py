@@ -9,6 +9,7 @@ import os
 from src.spark_maker import sparky
 from src.ingestors.embeddors.TrivialEmbedder import TrivialEmbedder
 from src.documators.NCCustVectDocumator import NCCustVectDocumator
+from src.documators.NCCustKeyDocumator import NCCustKeyDocumator
 
 load_dotenv()
 
@@ -139,7 +140,7 @@ def new_try_qdrant():
 
 def new_try_elastic():
   ingestor = ElasticIngestor(os.environ['ELASTIC_HOST'], os.environ['ELASTIC_PORT'])
-  documator = NCCustVectDocumator()
+  documator = NCCustKeyDocumator()
 
   trans = Translator(ingestor, documator)
 
@@ -154,5 +155,5 @@ def new_try_elastic():
 
 if __name__ == "__main__":
   # qd()
-  # new_try_elastic()
-  new_try_qdrant()
+  new_try_elastic()
+  # new_try_qdrant()

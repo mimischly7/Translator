@@ -2,7 +2,6 @@ from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql.functions import udf, collect_list
 from pyspark.sql.types import StructType, StringType, ArrayType, Row
 from jinja2 import Template
-from pprint import pprint
 from typing import List
 
 from src.Document import Document
@@ -10,9 +9,10 @@ from src.utils import recursive_dictify
 from src.templates.ncentral_template import jinja_template
 from src.documators.Documator import Documator
 
-class NCCustVectDocumator(Documator):
+
+class NCCustKeyDocumator(Documator):
     def __init__(self):
-        super(NCCustVectDocumator, self).__init__(self.__class__.__name__)
+        super(NCCustKeyDocumator, self).__init__(self.__class__.__name__)
     
     def reduce(self, spark_session: SparkSession) -> DataFrame:
         catalog_name = "rest_catalog"
@@ -102,19 +102,6 @@ class NCCustVectDocumator(Documator):
         custs_with_struct = (cust_join_devs.withColumn("cust_struct", structify_cust(*cust_join_devs.columns))
                             .select("customer_id", "cust_struct"))
         
-        # print("last rebel")
-        # custs_with_struct.show(2, vertical=True, truncate=False)
-
-        # @udf(returnType=cust_struct)
-        # def distribute_devices(*vals):
-        #     print("lord: ")
-        #     pprint(vals)
-        #     # return 
-
-
-        # custs_with_struct_dev_distributed = (custs_with_struct.withColumn("cust_struct", distribute_devices("cust_struct"))
-        #                     .select("customer_id", "cust_struct"))
-        
         return custs_with_struct
     
     def documentify(self, row: Row) -> List[Document]:
@@ -123,9 +110,8 @@ class NCCustVectDocumator(Documator):
         template = Template(jinja_template)
         data = {"data": content, "metadata": {"num_devices": len(content["dev_structs"])}}
         formatted_text = template.render(cust_struct=data["data"], meta=data["metadata"])
-        pprint(f"formatted_text: {formatted_text}")
         data_for_doc = {
-            "content" : formatted_text[:1500],
+            "content" : str(formatted_text),
             "payload" : {"summary" : f"NCentral information for customer {content['customer_id']}"},
             "collection" : "customers"
         }

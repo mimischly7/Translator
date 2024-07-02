@@ -84,6 +84,7 @@ UDAF:
   - [ ] Work
     - [x] Implement `Ingestor` for `qdrant`
     - [ ] Make a `Documator` the breaks down docs into smaller documents to be stored in QDRANT
+    - [ ] Learn how packaging works python
     - [ ] Make sure airflow works up to store-data
     - [ ] Run the DAG with full data, and then run the translator (before running translato remove indices/collections)
     - [ ] package into a wheel to be used in the lagoon project -- remember that everything that now comes out of a `.env` file
@@ -109,3 +110,37 @@ UDAF:
 
 
   - [ ] https://www.youtube.com/watch?v=2KLC2yxxR1g&ab_channel=NaturalLanguageProcessingpresentations
+
+
+
+# Learn
+- [ ] https://huggingface.co/docs/transformers/pipeline_tutorial
+- [ ] https://huggingface.co/learn/nlp-course/chapter1/4?fw=pt
+- [ ] https://datascience.stackexchange.com/questions/62658/how-to-get-sentence-embedding-using-bert
+- [ ] medium"
+  - [ ] https://towardsdatascience.com/generating-sentence-level-embedding-based-on-the-trends-in-token-level-bert-embeddings-eb08fa2ad3c8
+  - [ ] https://towardsdatascience.com/discovering-trends-in-bert-embeddings-of-different-levels-for-the-task-of-semantic-context-268733fdb17e
+- [ ] paper: chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://arxiv.org/pdf/1908.10084
+- [ ] stanford: https://www.youtube.com/watch?v=XfpMkf4rD6E&ab_channel=StanfordOnline
+- [ ] financial search video: https://www.youtube.com/watch?v=xzHhZh7F25I&ab_channel=PartTimeLarry
+- [ ] sos math: https://www.youtube.com/watch?v=bCz4OMemCcA&t=751s&ab_channel=UmarJamil
+- [ ] pooling layers: https://machinelearningmastery.com/pooling-layers-for-convolutional-neural-networks/
+- [ ] https://www.youtube.com/watch?v=OATCgQtNX2o&ab_channel=HuggingFace
+- [ ] SOSOSOS spark with HuggingFace:  https://www.youtube.com/watch?v=2KLC2yxxR1g&ab_channel=NaturalLanguageProcessingpresentations
+- [ ] Ganglia: https://en.wikipedia.org/wiki/Ganglia_(software)
+- [ ] 12 factor app: https://12factor.net/
+- [ ] SOSOSOSOS on serialabability:
+  - [ ] https://stackoverflow.com/questions/22592811/task-not-serializable-java-io-notserializableexception-when-calling-function-ou
+  - [ ] https://stackoverflow.com/questions/55708455/typeerror-cant-pickle-thread-local-objects-when-using-dask-on-pandas-datafra
+
+  (https://medium.com/@moheekushal/pyspark-typeerror-cant-pickle-thread-rlock-objects-8f6f9f85e626)
+- [ ]
+
+React frontend on flask backend:
+  - [ ] https://blog.miguelgrinberg.com/post/how-to-create-a-react--flask-project
+  - [ ] https://www.reddit.com/r/flask/comments/vhod8c/react_frontend_on_a_flask_backend/
+  - [ ] https://stackoverflow.com/questions/49729648/pickle-picklingerror-could-not-serialize-object-typeerror-cant-pickle-thre
+  - [ ]
+
+
+MIT distributed systems: https://www.youtube.com/watch?v=cQP8WApzIQQ&list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB&ab_channel=MIT6.824%3ADistributedSystems

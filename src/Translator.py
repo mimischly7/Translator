@@ -37,7 +37,7 @@ class Translator:
     def _transform(self, spark_session: SparkSession) -> DataFrame:
         return self.documator.reduce(spark_session)
 
-    def _documentify(self, row: Row) -> Document:
+    def _documentify(self, row: Row) -> List[Document]:
         return self.documator.documentify(row)
     
     def _ingest(self, docs: List[Document]):
@@ -83,7 +83,7 @@ class Translator:
 
         # Better Solution
         def _process_batch(itr):
-            docs = [self._documentify(row) for row in itr]
+            docs = [doc for row in itr for doc in self._documentify(row)]
             self._ingest(docs)
 
         transformed_df = self._transform(spark_session)
