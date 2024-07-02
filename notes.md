@@ -79,18 +79,33 @@ UDAF:
 
 
 
+
 # TODO:
   - [ ] Work
-    - [ ] Implement `Ingestor` for `qdrant`
+    - [x] Implement `Ingestor` for `qdrant`
+    - [ ] Make a `Documator` the breaks down docs into smaller documents to be stored in QDRANT
     - [ ] Make sure airflow works up to store-data
     - [ ] Run the DAG with full data, and then run the translator (before running translato remove indices/collections)
     - [ ] package into a wheel to be used in the lagoon project -- remember that everything that now comes out of a `.env` file
           or a `config.py` file will now have to becomne parameters of a function to be passed in the airflow process (from xcom
           info for example)
+    - [ ] Create an airflow task for this
+
+      The config inputs that need to be passed to the task that will be created for this step are:
+      - qdrant host + port
+      - elastic host + port
+      - Iceberg Conn Info:
+        - [ ] Rest host + port
+        - [ ] Minio
+          - [ ] host + port
+          - [ ] access and secret keys
+          
   - [ ] Liu
     - [ ] Wrap up PR for button
     - [ ]
   - [ ] Personal
+
+
 
 
   - [ ] https://www.youtube.com/watch?v=2KLC2yxxR1g&ab_channel=NaturalLanguageProcessingpresentations

@@ -1,6 +1,5 @@
 from pyspark.sql import SparkSession
 from src.config import *
-import logging
 import os
 
 def sparky() :
