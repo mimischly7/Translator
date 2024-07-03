@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from src.config import *
+from lagoon_translator.config import *
 import os
 
 def sparky() :

@@ -4,10 +4,10 @@ from pyspark.sql.types import StructType, StringType, ArrayType, Row
 from jinja2 import Template
 from typing import List
 
-from src.Document import Document
-from src.utils import recursive_dictify
-from src.templates.ncentral_template import jinja_template
-from src.documators.Documator import Documator
+from lagoon_translator.Document import Document
+from lagoon_translator.utils import recursive_dictify
+from lagoon_translator.templates.ncentral_template import jinja_template
+from lagoon_translator.documators.Documator import Documator
 
 
 class NCCustKeyDocumator(Documator):

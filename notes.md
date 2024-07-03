@@ -83,13 +83,16 @@ UDAF:
 # TODO:
   - [ ] Work
     - [x] Implement `Ingestor` for `qdrant`
-    - [ ] Make a `Documator` the breaks down docs into smaller documents to be stored in QDRANT
-    - [ ] Learn how packaging works python
+    - [x] Make a `Documator` the breaks down docs into smaller documents to be stored in QDRANT
+    - [x] Learn how packaging works python
     - [ ] Make sure airflow works up to store-data
-    - [ ] Run the DAG with full data, and then run the translator (before running translato remove indices/collections)
+    - [ ] Run the DAG with full data, and then run the translator (before running translator remove indices/collections)
     - [ ] package into a wheel to be used in the lagoon project -- remember that everything that now comes out of a `.env` file
           or a `config.py` file will now have to becomne parameters of a function to be passed in the airflow process (from xcom
           info for example)
+      - [ ] hosting the produced pacakge, either locally or on Github
+        - locally: https://stackoverflow.com/questions/62956690/install-local-wheel-file-with-requirements-txt
+        - github: https://docs.readthedocs.io/en/stable/guides/private-python-packages.html
     - [ ] Create an airflow task for this
 
       The config inputs that need to be passed to the task that will be created for this step are:

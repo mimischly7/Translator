@@ -3,8 +3,8 @@ import pprint
 from pyspark.sql.functions import udf, collect_list
 from pyspark.sql.types import StructType, StructField, IntegerType, StringType
 
-from src.config import *
-from src.spark_maker import sparky
+from lagoon_translator.config import *
+from lagoon_translator.spark_maker import sparky
 import logging
 import os
 os.environ["AWS_REGION"] = "bamba"

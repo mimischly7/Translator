@@ -1,15 +1,15 @@
 import sys
 sys.path.insert(0, "/Users/mimischly/Desktop/bluebird/jun03/Translation/")
 
-from src.Translator import Translator
-from src.ingestors.QDrantIngestor import QDrantIngestor
-from src.ingestors.ElasticIngestor import ElasticIngestor
+from lagoon_translator.Translator import Translator
+from lagoon_translator.ingestors.QDrantIngestor import QDrantIngestor
+from lagoon_translator.ingestors.ElasticIngestor import ElasticIngestor
 from dotenv import load_dotenv
 import os
-from src.spark_maker import sparky
-from src.ingestors.embeddors.TrivialEmbedder import TrivialEmbedder
-from src.documators.NCCustVectDocumator import NCCustVectDocumator
-from src.documators.NCCustKeyDocumator import NCCustKeyDocumator
+from lagoon_translator.spark_maker import sparky
+from lagoon_translator.ingestors.embeddors.TrivialEmbedder import TrivialEmbedder
+from lagoon_translator.documators.NCCustVectDocumator import NCCustVectDocumator
+from lagoon_translator.documators.NCCustKeyDocumator import NCCustKeyDocumator
 
 load_dotenv()
 

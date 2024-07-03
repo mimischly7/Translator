@@ -2,9 +2,9 @@ from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql.types import Row
 from typing import List
 
-from src.Document import Document
-from src.ingestors.Ingestor import Ingestor
-from src.documators import Documator
+from lagoon_translator.Document import Document
+from lagoon_translator.ingestors.Ingestor import Ingestor
+from lagoon_translator.documators import Documator
 
 class Translator:
     """

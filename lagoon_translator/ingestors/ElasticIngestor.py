@@ -2,8 +2,8 @@ from elasticsearch import Elasticsearch
 from pprint import pprint
 from typing import List
 
-from src.ingestors.Ingestor import Ingestor
-from src.Document import Document
+from lagoon_translator.ingestors.Ingestor import Ingestor
+from lagoon_translator.Document import Document
 
 
 class ElasticIngestor(Ingestor):

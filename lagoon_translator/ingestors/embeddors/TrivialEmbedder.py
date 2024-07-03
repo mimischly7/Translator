@@ -1,4 +1,4 @@
-from src.ingestors.embeddors.Embedder import Embedder
+from lagoon_translator.ingestors.embeddors.Embedder import Embedder
 from numpy.random import randint
 from transformers import pipeline
 import numpy as np

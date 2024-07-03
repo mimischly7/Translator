@@ -1,7 +1,7 @@
 import sys
 
 from typing import List
-from src.Document import Document
+from lagoon_translator.Document import Document
 
 class Ingestor:
     def __init__(self, name, host, port):

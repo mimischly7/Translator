@@ -3,7 +3,7 @@ import pprint
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import udf, struct, col, collect_list, min
 from pyspark.sql.types import StringType, ArrayType
-from src.config import *
+from lagoon_translator.config import *
 
 import logging
 

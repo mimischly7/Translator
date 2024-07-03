@@ -1,9 +1,9 @@
 from typing import List
 from qdrant_client import models, QdrantClient
 
-from src.ingestors.Ingestor import Ingestor
-from src.Document import Document
-from src.ingestors.embeddors.Embedder import Embedder
+from lagoon_translator.ingestors.Ingestor import Ingestor
+from lagoon_translator.Document import Document
+from lagoon_translator.ingestors.embeddors.Embedder import Embedder
 
 class QDrantIngestor(Ingestor):
     def __init__(self, host, port, embedder: Embedder):

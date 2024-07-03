@@ -2,17 +2,17 @@ import pprint
 from jinja2 import Template
 from pyspark.sql.functions import udf, collect_list
 from pyspark.sql.types import StructType, StructField, IntegerType, StringType, ArrayType, Row
-from src.config import *
-from src.spark_maker import sparky
-from src.templates.ncentral_template import *
+from lagoon_translator.config import *
+from lagoon_translator.spark_maker import sparky
+from lagoon_translator.templates.ncentral_template import *
 from pyspark.sql import DataFrame, SparkSession
-from src.Document import Document
-from src.ingestors.ElasticIngestor import ElasticIngestor
+from lagoon_translator.Document import Document
+from lagoon_translator.ingestors.ElasticIngestor import ElasticIngestor
 from dotenv import load_dotenv
 import os
 import time
 from dotenv import load_dotenv
-from src.utils import *
+from lagoon_translator.utils import *
 load_dotenv()
 
 spark = sparky()
