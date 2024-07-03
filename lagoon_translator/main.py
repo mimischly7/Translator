@@ -156,4 +156,4 @@ def new_try_elastic():
 if __name__ == "__main__":
   # qd()
   new_try_elastic()
-  # new_try_qdrant()
+  new_try_qdrant()
