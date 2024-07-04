@@ -83,31 +83,29 @@ UDAF:
 # TODO:
   - [ ] Work
     - [x] Implement `Ingestor` for `qdrant`
-    - [x] Make a `Documator` the breaks down docs into smaller documents to be stored in QDRANT
-    - [x] Learn how packaging works python
+    - [ ] Make a `Documator` the breaks down docs into smaller documents to be stored in QDRANT
+    - [ ] Learn how packaging works python
     - [ ] Make sure airflow works up to store-data
-    - [ ] Run the DAG with full data, and then run the translator (before running translator remove indices/collections)
+    - [ ] Run the DAG with full data, and then run the translator (before running translato remove indices/collections)
     - [ ] package into a wheel to be used in the lagoon project -- remember that everything that now comes out of a `.env` file
           or a `config.py` file will now have to becomne parameters of a function to be passed in the airflow process (from xcom
           info for example)
-      - [ ] hosting the produced pacakge, either locally or on Github
-        - locally: https://stackoverflow.com/questions/62956690/install-local-wheel-file-with-requirements-txt
-        - github: https://docs.readthedocs.io/en/stable/guides/private-python-packages.html
     - [ ] Create an airflow task for this
-
-      The config inputs that need to be passed to the task that will be created for this step are:
-      - qdrant host + port
-      - elastic host + port
-      - Iceberg Conn Info:
-        - [ ] Rest host + port
+      - [ ] The config inputs that need to be passed to the task that will be created for this step are:
+        - qdrant host + port
+        - elastic host + port
+        - Iceberg Conn Info:
+          - [ ] Rest host + port
         - [ ] Minio
           - [ ] host + port
           - [ ] access and secret keys
-          
+      - Explore how to use a Hook to make the connection to iceberg run a spark session (maybe not necessary)
+          s
   - [ ] Liu
     - [ ] Wrap up PR for button
     - [ ]
   - [ ] Personal
+
 
 
 

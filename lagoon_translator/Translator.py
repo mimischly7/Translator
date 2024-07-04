@@ -3,8 +3,8 @@ from pyspark.sql.types import Row
 from typing import List
 
 from lagoon_translator.Document import Document
-from lagoon_translator.ingestors.Ingestor import Ingestor
-from lagoon_translator.documators import Documator
+from lagoon_translator.Ingestor import Ingestor
+from lagoon_translator import Documator
 
 class Translator:
     """
@@ -74,13 +74,6 @@ class Translator:
         Start and close connection with a method the enclosing class (the Translator.ingest method in this case) instead of before
         passing the Ingestor object to Translator!
         """
-        # # Old solution
-        # doc_func = self.documentify.__func__
-        # ingest_func = self.ingest.__func__
-        # def _process_batch(itr):
-        #     docs = [doc_func(None, row) for row in itr]
-        #     ingest_func(None, docs)
-
         # Better Solution
         def _process_batch(itr):
             docs = [doc for row in itr for doc in self._documentify(row)]
