@@ -10,6 +10,8 @@ from lagoon_translator.spark_maker import sparky
 from lagoon_translator.ingestors.embeddors.TrivialEmbedder import TrivialEmbedder
 from lagoon_translator.documators.NCCustVectDocumator import NCCustVectDocumator
 from lagoon_translator.documators.NCCustKeyDocumator import NCCustKeyDocumator
+from lagoon_translator.reducers.NCCustReducer import NCCustReducer
+from lagoon_translator.templates.ncentral_template import jinja_template
 
 load_dotenv()
 
@@ -120,12 +122,13 @@ def qd():
 def new_try_qdrant():
   embedder = TrivialEmbedder()
   ingestor = QDrantIngestor(os.environ['QDRANT_HOST'], os.environ['QDRANT_PORT'], embedder)
-  documator = NCCustVectDocumator()
+  reducer = NCCustReducer()
+  documator = NCCustKeyDocumator(jinja_template)
 
   print("ingestor and documator created!")
 
   # trans = NCCustTranslator(ingestor)
-  trans = Translator(ingestor, documator)
+  trans = Translator(ingestor, reducer, documator)
 
   print("translator created!")
 
@@ -140,11 +143,13 @@ def new_try_qdrant():
 
 def new_try_elastic():
   ingestor = ElasticIngestor(os.environ['ELASTIC_HOST'], os.environ['ELASTIC_PORT'])
-  documator = NCCustKeyDocumator()
+  reducer = NCCustReducer()
+  documator = NCCustKeyDocumator(jinja_template)
 
-  trans = Translator(ingestor, documator)
+  trans = Translator(ingestor, reducer, documator)
 
   spark_session = sparky()
+
 
   # df = trans.transform(spark_session)
   # doc = trans.documentify(df.take(1)[0])
@@ -155,5 +160,5 @@ def new_try_elastic():
 
 if __name__ == "__main__":
   # qd()
-  new_try_elastic()
+  # new_try_elastic()
   new_try_qdrant()

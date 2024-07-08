@@ -1,5 +1,5 @@
-# ip_address = '10.0.0.146' # home
-ip_address = '10.10.40.25' # bluebird
+ip_address = '10.0.0.146' # home
+# ip_address = '10.10.40.25' # bluebird
 # ip_address = "localhost" ### SOSOSOSO localhost other container names do not work, only IP (Giles?)
 catalog_name = "rest_catalog"
 rest_endpoint = f"{ip_address}:8181"

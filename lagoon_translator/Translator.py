@@ -5,6 +5,7 @@ from typing import List
 from lagoon_translator.Document import Document
 from lagoon_translator.ingestors.Ingestor import Ingestor
 from lagoon_translator.documators import Documator
+from lagoon_translator.reducers import Reducer
 
 class Translator:
     """
@@ -30,15 +31,16 @@ class Translator:
     Although this is the logical order of the steps, steps (2) and (3) will operate on batches (partitions) of the relevant data,
     so in a way they will happen in parallel (although for each batch they will run in the specified order)
     """
-    def __init__(self, ingestor: Ingestor, documator: Documator):
+    def __init__(self, ingestor: Ingestor, reducer: Reducer, documator: Documator):
+        self.reducer = reducer
         self.ingestor = ingestor
         self.documator = documator
 
     def _transform(self, spark_session: SparkSession) -> DataFrame:
-        return self.documator.reduce(spark_session)
+        return self.reducer.reduce(spark_session)
 
     def _documentify(self, row: Row) -> List[Document]:
-        return self.documator.documentify(row)
+        return self.documator.documentify(row, )
     
     def _ingest(self, docs: List[Document]):
         self.ingestor.connect()
